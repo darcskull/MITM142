@@ -14,11 +14,11 @@
 package com.MITM142.client.api;
 
 import com.google.gson.reflect.TypeToken;
-import org.openapitools.client.*;
-import org.openapitools.client.model.AddRecordsParams;
-import org.openapitools.client.model.MultiIndexRangeParams;
-import org.openapitools.client.model.RecordsPage;
-import org.openapitools.client.model.Schema;
+import com.MITM142.client.*;
+import com.MITM142.client.model.AddRecordsParams;
+import com.MITM142.client.model.MultiIndexRangeParams;
+import com.MITM142.client.model.RecordsPage;
+import com.MITM142.client.model.Schema;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

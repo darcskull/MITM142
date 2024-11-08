@@ -13,11 +13,16 @@
 
 package com.MITM142.client.api;
 
+import com.MITM142.client.ApiCallback;
+import com.MITM142.client.ApiClient;
+import com.MITM142.client.ApiException;
+import com.MITM142.client.ApiResponse;
+import com.MITM142.client.model.FileStorageCopyParams;
+import com.MITM142.client.model.FileStorageRequestParams;
+import com.MITM142.client.model.ObjectInfo;
 import com.google.gson.reflect.TypeToken;
-import org.openapitools.client.*;
-import org.openapitools.client.model.FileStorageCopyParams;
-import org.openapitools.client.model.FileStorageRequestParams;
-import org.openapitools.client.model.ObjectInfo;
+import com.MITM142.client.*;
+import com.MITM142.client.model.*;
 
 import java.io.File;
 import java.lang.reflect.Type;

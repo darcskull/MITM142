@@ -16,10 +16,11 @@ package com.MITM142.client;
 import com.google.gson.*;
 import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import io.gsonfire.GsonFireBuilder;
 import okio.ByteString;
-import org.openapitools.client.model.*;
+import com.MITM142.client.model.*;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.OffsetDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
@@ -32,6 +33,7 @@ import java.text.ParseException;
 import java.text.ParsePosition;
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 
 public class JSON {
     private Gson gson;
@@ -164,15 +166,13 @@ public class JSON {
 
         @Override
         public byte[] read(JsonReader in) throws IOException {
-            switch (in.peek()) {
-                case NULL:
-                    in.nextNull();
-                    return null;
-                default:
-                    String bytesAsBase64 = in.nextString();
-                    ByteString byteString = ByteString.decodeBase64(bytesAsBase64);
-                    return byteString.toByteArray();
+            if (Objects.requireNonNull(in.peek()) == JsonToken.STRING.NULL) {
+                in.nextNull();
+                return null;
             }
+            String bytesAsBase64 = in.nextString();
+            ByteString byteString = ByteString.decodeBase64(bytesAsBase64);
+            return byteString.toByteArray();
         }
     }
 
@@ -206,17 +206,15 @@ public class JSON {
 
         @Override
         public OffsetDateTime read(JsonReader in) throws IOException {
-            switch (in.peek()) {
-                case NULL:
-                    in.nextNull();
-                    return null;
-                default:
-                    String date = in.nextString();
-                    if (date.endsWith("+0000")) {
-                        date = date.substring(0, date.length()-5) + "Z";
-                    }
-                    return OffsetDateTime.parse(date, formatter);
+            if (Objects.requireNonNull(in.peek()) == JsonToken.STRING.NULL) {
+                in.nextNull();
+                return null;
             }
+            String date = in.nextString();
+            if (date.endsWith("+0000")) {
+                date = date.substring(0, date.length() - 5) + "Z";
+            }
+            return OffsetDateTime.parse(date, formatter);
         }
     }
 
@@ -250,14 +248,12 @@ public class JSON {
 
         @Override
         public LocalDate read(JsonReader in) throws IOException {
-            switch (in.peek()) {
-                case NULL:
-                    in.nextNull();
-                    return null;
-                default:
-                    String date = in.nextString();
-                    return LocalDate.parse(date, formatter);
+            if (Objects.requireNonNull(in.peek()) == JsonToken.STRING.NULL) {
+                in.nextNull();
+                return null;
             }
+            String date = in.nextString();
+            return LocalDate.parse(date, formatter);
         }
     }
 
@@ -307,20 +303,18 @@ public class JSON {
 
         @Override
         public java.sql.Date read(JsonReader in) throws IOException {
-            switch (in.peek()) {
-                case NULL:
-                    in.nextNull();
-                    return null;
-                default:
-                    String date = in.nextString();
-                    try {
-                        if (dateFormat != null) {
-                            return new java.sql.Date(dateFormat.parse(date).getTime());
-                        }
-                        return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
-                    } catch (ParseException e) {
-                        throw new JsonParseException(e);
-                    }
+            if (Objects.requireNonNull(in.peek()) == JsonToken.STRING.NULL) {
+                in.nextNull();
+                return null;
+            }
+            String date = in.nextString();
+            try {
+                if (dateFormat != null) {
+                    return new java.sql.Date(dateFormat.parse(date).getTime());
+                }
+                return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
+            } catch (ParseException e) {
+                throw new JsonParseException(e);
             }
         }
     }
@@ -361,20 +355,18 @@ public class JSON {
         @Override
         public Date read(JsonReader in) throws IOException {
             try {
-                switch (in.peek()) {
-                    case NULL:
-                        in.nextNull();
-                        return null;
-                    default:
-                        String date = in.nextString();
-                        try {
-                            if (dateFormat != null) {
-                                return dateFormat.parse(date);
-                            }
-                            return ISO8601Utils.parse(date, new ParsePosition(0));
-                        } catch (ParseException e) {
-                            throw new JsonParseException(e);
-                        }
+                if (Objects.requireNonNull(in.peek()) == JsonToken.STRING.NULL) {
+                    in.nextNull();
+                    return null;
+                }
+                String date = in.nextString();
+                try {
+                    if (dateFormat != null) {
+                        return dateFormat.parse(date);
+                    }
+                    return ISO8601Utils.parse(date, new ParsePosition(0));
+                } catch (ParseException e) {
+                    throw new JsonParseException(e);
                 }
             } catch (IllegalArgumentException e) {
                 throw new JsonParseException(e);

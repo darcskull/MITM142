@@ -13,6 +13,9 @@
 
 package com.MITM142.client;
 
+import com.MITM142.client.auth.ApiKeyAuth;
+import com.MITM142.client.auth.Authentication;
+import com.MITM142.client.auth.HttpBasicAuth;
 import okhttp3.*;
 import okhttp3.internal.http.HttpMethod;
 import okhttp3.internal.tls.OkHostnameVerifier;
@@ -20,9 +23,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
 import okio.BufferedSink;
 import okio.Okio;
-import org.openapitools.client.auth.ApiKeyAuth;
-import org.openapitools.client.auth.Authentication;
-import org.openapitools.client.auth.HttpBasicAuth;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.OffsetDateTime;
 import org.threeten.bp.format.DateTimeFormatter;

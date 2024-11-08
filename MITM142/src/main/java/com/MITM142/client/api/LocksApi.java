@@ -13,9 +13,9 @@
 
 package com.MITM142.client.api;
 
+import com.MITM142.client.model.LocksRequestParams;
 import com.google.gson.reflect.TypeToken;
-import org.openapitools.client.*;
-import org.openapitools.client.model.LocksRequestParams;
+import com.MITM142.client.*;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

@@ -14,10 +14,10 @@
 package com.MITM142.client.api;
 
 import com.google.gson.reflect.TypeToken;
-import org.openapitools.client.*;
-import org.openapitools.client.model.TimeSeriesConfiguration;
-import org.openapitools.client.model.TimeSeriesEntry;
-import org.openapitools.client.model.TimeSeriesRange;
+import com.MITM142.client.*;
+import com.MITM142.client.model.TimeSeriesConfiguration;
+import com.MITM142.client.model.TimeSeriesEntry;
+import com.MITM142.client.model.TimeSeriesRange;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

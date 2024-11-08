@@ -13,10 +13,10 @@
 
 package com.MITM142.client.api;
 
+import com.MITM142.client.*;
+import com.MITM142.client.model.IndexData;
+import com.MITM142.client.model.SearchQuery;
 import com.google.gson.reflect.TypeToken;
-import org.openapitools.client.*;
-import org.openapitools.client.model.IndexData;
-import org.openapitools.client.model.SearchQuery;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

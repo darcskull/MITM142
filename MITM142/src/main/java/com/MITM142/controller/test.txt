@@ -1,0 +1,39 @@
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Създаване на инстанция на NodeApiAdminClient и издаване на токен
+            NodeApiAdminClient nodeApiAdminClient = new NodeApiAdminClient("http://your-routing-node-address/api/v1");
+            String jwtToken = nodeApiAdminClient.issueTokenBySecret("your_secret_here", "");
+
+            // Инициализация на KeysApi с ApiClient
+            ApiClient apiClient = new ApiClient();
+            apiClient.addDefaultHeader("x-token", jwtToken); // Задаване на x-token хедъра с издадения токен
+
+            KeysApi keysApi = new KeysApi(apiClient);
+
+            // Стартиране на автоматично подновяване на токена на всеки 10 секунди
+            ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+            scheduler.scheduleAtFixedRate(() -> {
+                try {
+                    String newToken = nodeApiAdminClient.refreshToken();
+                    apiClient.addDefaultHeader("x-token", newToken); // Обновяване на x-token хедъра
+                } catch (Exception e) {
+                    System.err.println("Грешка при подновяване на токена: " + e.getMessage());
+                    scheduler.shutdown();
+                }
+            }, 0, 10, TimeUnit.SECONDS);
+
+            // Извикване на метода delKey с необходимите параметри
+            String table = "your_table";
+            String key = "your_key";
+            String xAppUuid = "your_app_uuid"; // Може да е null, ако не е задължително
+            String xSecret = "your_secret"; // Може да е null, ако не е задължително
+
+            Long deletedKeys = keysApi.delKey(table, key, xAppUuid, xSecret, jwtToken);
+            System.out.println("Брой изтрити ключове: " + deletedKeys);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

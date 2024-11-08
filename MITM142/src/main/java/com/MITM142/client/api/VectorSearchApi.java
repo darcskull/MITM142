@@ -14,11 +14,11 @@
 package com.MITM142.client.api;
 
 import com.google.gson.reflect.TypeToken;
-import org.openapitools.client.*;
-import org.openapitools.client.model.RefreshWorkerTTLParams;
-import org.openapitools.client.model.SearchVectorsRequest;
-import org.openapitools.client.model.Vector;
-import org.openapitools.client.model.VectorSearchConfiguration;
+import com.MITM142.client.*;
+import com.MITM142.client.model.RefreshWorkerTTLParams;
+import com.MITM142.client.model.SearchVectorsRequest;
+import com.MITM142.client.model.Vector;
+import com.MITM142.client.model.VectorSearchConfiguration;
 
 import java.lang.reflect.Type;
 import java.math.BigDecimal;

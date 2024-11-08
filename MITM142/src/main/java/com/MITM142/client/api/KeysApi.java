@@ -14,8 +14,8 @@
 package com.MITM142.client.api;
 
 import com.google.gson.reflect.TypeToken;
-import org.openapitools.client.*;
-import org.openapitools.client.model.*;
+import com.MITM142.client.*;
+import com.MITM142.client.model.*;
 
 import java.lang.reflect.Type;
 import java.math.BigDecimal;

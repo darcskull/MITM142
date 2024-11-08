@@ -14,7 +14,7 @@
 package com.MITM142.client.auth;
 
 import okhttp3.Credentials;
-import org.openapitools.client.Pair;
+import com.MITM142.client.Pair;
 
 import java.util.List;
 import java.util.Map;

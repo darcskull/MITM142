@@ -13,13 +13,14 @@
 
 package com.MITM142.client.api;
 
-import com.google.gson.reflect.TypeToken;
-import com.MITM142.client.*;
-import com.MITM142.client.model.PublicKey;
 import com.MITM142.client.model.Secret;
 import com.MITM142.client.model.User;
+import com.google.gson.reflect.TypeToken;
+import com.MITM142.client.*;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import java.lang.reflect.Type;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

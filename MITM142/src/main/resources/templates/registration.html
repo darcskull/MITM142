@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function register(event) {
+            event.preventDefault();
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var password = document.getElementById("password").value;
+            var email = document.getElementById("email").value;
+            var phoneNumber = document.getElementById("phoneNumber").value;
+
+            var formData = {
+                firstName: firstName,
+                lastName: lastName,
+                password: password,
+                email: email,
+                phoneNumber: phoneNumber
+            };
+
+            fetch("/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log("Registration successful");
+                        window.location.href = "/";
+                    } else if (response.status === 400) {
+                        message.textContent = "Empty values are not allowed";
+                    } else if (response.status === 409) {
+                        message.textContent = "The email is already registered";
+                    } else {
+                        console.error("Registration failed");
+                        message.textContent = "One or more fields are with invalid value";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    message.textContent = "An error has occurred";
+                });
+        }
+    </script>
+</head>
+<body>
+<form action="/" method="get">
+    <button type="submit">Return to login page</button>
+</form>
+<h2>User Registration</h2>
+<form>
+    <div>First Name:</div>
+    <label for="firstName"></label>
+    <input type="text" id="firstName"  required><br>
+
+    <div>Last Name:</div>
+    <label for="lastName"></label>
+    <input type="text" id="lastName" required><br>
+
+    <div>Password:</div>
+    <label for="password"></label>
+    <input type="password" id="password" required><br>
+
+    <div>Email:</div>
+    <label for="email"></label>
+    <input type="email" id="email" required><br>
+
+    <div>Phone Number:</div>
+    <label for="phoneNumber"></label>
+    <input type="text" id="phoneNumber" required><br>
+
+    <button type="submit" onclick="register(event)">Register</button>
+</form>
+
+<div id="message" style="color: red;"></div>
+</body>
+</html>

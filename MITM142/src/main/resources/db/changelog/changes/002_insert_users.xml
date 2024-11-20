@@ -1,0 +1,31 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="insert_sample_users" author="martin">
+        <insert tableName="User">
+            <column name="id" valueComputed="nextval('user_sequence')"/>
+            <column name="firstName" value="John"/>
+            <column name="lastName" value="Doe"/>
+            <column name="password" value="1234"/>
+            <column name="email" value="patient@example.com"/>
+            <column name="phoneNumber" value="0888161650"/>
+        </insert>
+        <insert tableName="User">
+            <column name="id" valueComputed="nextval('user_sequence')"/>
+            <column name="firstName" value="Jane"/>
+            <column name="lastName" value="Doe"/>
+            <column name="password" value="1234"/>
+            <column name="email" value="doctor@example.com"/>
+            <column name="phoneNumber" value="0888161651"/>
+        </insert>
+        <insert tableName="User">
+            <column name="id" valueComputed="nextval('user_sequence')"/>
+            <column name="firstName" value="Jane"/>
+            <column name="lastName" value="Doe"/>
+            <column name="password" value="1234"/>
+            <column name="email" value="test@abv.bg"/>
+            <column name="phoneNumber" value="0888161656"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

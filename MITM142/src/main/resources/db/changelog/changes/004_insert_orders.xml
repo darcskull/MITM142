@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="insert_sample_orders" author="martin">
+        <insert tableName="Order">
+            <column name="id" valueComputed="nextval('order_sequence')"/>
+            <column name="serviceId" value="1"/>
+            <column name="buyerId" value="1"/>
+            <column name="address" value="123 Main St, City"/>
+        </insert>
+        <insert tableName="Order">
+            <column name="id" valueComputed="nextval('order_sequence')"/>
+            <column name="serviceId" value="2"/>
+            <column name="buyerId" value="2"/>
+            <column name="address" value="456 Oak Ave, City"/>
+        </insert>
+        <insert tableName="Order">
+            <column name="id" valueComputed="nextval('order_sequence')"/>
+            <column name="serviceId" value="3"/>
+            <column name="buyerId" value="3"/>
+            <column name="address" value="789 Pine Blvd, City"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <changeSet id="insert_sample_services" author="martin">
+        <insert tableName="Service">
+            <column name="id" valueComputed="nextval('service_sequence')"/>
+            <column name="shortDescription" value="Web Development"/>
+            <column name="longDescription" value="Development of websites and web applications"/>
+            <column name="type" value="Development"/>
+            <column name="userId" value="1"/>
+            <column name="price" value="500.00"/>
+            <column name="timeInHours" value="50"/>
+        </insert>
+        <insert tableName="Service">
+            <column name="id" valueComputed="nextval('service_sequence')"/>
+            <column name="shortDescription" value="Graphic Design"/>
+            <column name="longDescription" value="Design of logos, posters, and branding materials"/>
+            <column name="type" value="Design"/>
+            <column name="userId" value="2"/>
+            <column name="price" value="300.00"/>
+            <column name="timeInHours" value="30"/>
+        </insert>
+        <insert tableName="Service">
+            <column name="id" valueComputed="nextval('service_sequence')"/>
+            <column name="shortDescription" value="Digital Marketing"/>
+            <column name="longDescription" value="Online marketing strategies and campaign management"/>
+            <column name="type" value="Marketing"/>
+            <column name="userId" value="3"/>
+            <column name="price" value="700.00"/>
+            <column name="timeInHours" value="70"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

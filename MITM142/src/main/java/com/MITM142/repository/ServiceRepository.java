@@ -1,12 +1,17 @@
 package com.MITM142.repository;
 
-import com.MITM142.data.Service;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
-@Repository
-public interface ServiceRepository extends JpaRepository<Service, Integer> {
-    List<Service> findByUserId(Integer userId);
-    List<Service> findByType(String type);
+@Component
+public class ServiceRepository {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public ServiceRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
 }

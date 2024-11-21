@@ -1,12 +1,17 @@
 package com.MITM142.repository;
 
-import com.MITM142.data.Order;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
-@Repository
-public interface OrderRepository extends JpaRepository<Order, Integer> {
-    List<Order> findByBuyerId(Integer buyerId);
-    List<Order> findByServiceId(Integer serviceId);
+@Component
+public class OrderRepository {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public OrderRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.MITM142.controller;
 
 import com.MITM142.data.User;
+import com.MITM142.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
+
+    private final UserService userService;
     @GetMapping("/")
     public String loginPage() {
         return "login";
@@ -28,9 +31,9 @@ public class UserController {
     public ResponseEntity<User> login(@RequestBody Map<String, String> loginRequest, HttpSession session) {
         String email = loginRequest.get("email");
         String password = loginRequest.get("password");
-        User user = new User();
-        session.setAttribute("loggedInUser", user);
-        return ResponseEntity.ok(user);
+        User userData = userService.verifyLogin(email, password);
+        session.setAttribute("loggedInUser", userData);
+        return ResponseEntity.ok(userData);
     }
 
     @PostMapping("/register")
@@ -41,6 +44,7 @@ public class UserController {
         user.setFirstName(registrationRequest.get("firstName"));
         user.setLastName(registrationRequest.get("lastName"));
         user.setPhoneNumber(registrationRequest.get("phoneNumber"));
+        userService.registerUser(user);
         return ResponseEntity.ok(user);
     }
 

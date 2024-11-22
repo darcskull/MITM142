@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<img src="/img/team_logo.png" alt="Logo" class="logo">
+<div class="button-container">
+    <form action="/" method="get">
+        <button type="submit">Logout</button>
+    </form>
+    <form action="/services" method="get" class="form-container">
+        <button type="submit">Services</button>
+    </form>
+    <form action="/service/form" method="get" class="form-container">
+        <button type="submit">Create Service</button>
+    </form>
+</div>
+<h2>Services</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Service</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Price $</th>
+        <th>Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="service : ${personalServices}">
+        <td th:text="${service.shortDescription}"></td>
+        <td th:text="${service.longDescription}"></td>
+        <td th:text="${service.type}"></td>
+        <td th:text="${service.price}"></td>
+        <td th:text="${service.timeInHours}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

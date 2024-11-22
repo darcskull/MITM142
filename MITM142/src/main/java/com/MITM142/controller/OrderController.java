@@ -25,7 +25,7 @@ public class OrderController {
     private final ServiceService service;
 
     @GetMapping("/orders")
-    public String getServices(HttpSession session, Model model) {
+    public String getOrders(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
         var orders = orderService.getPersonalOrderList(user.getId());
         model.addAttribute("personalOrders", orders);
@@ -33,13 +33,14 @@ public class OrderController {
     }
 
     @GetMapping("/orders/form")
-    public String getServiceForm(@RequestBody Map<String, String> request, Model model) {
-        model.addAttribute("types", service.getServiceById(Integer.valueOf(request.get("serviceId"))));
+    public String getOrderForm(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("loggedInUser");
+        model.addAttribute("listOfServices", service.getServiceList(user.getId()));
         return "orderForm";
     }
 
     @GetMapping("/orders/service")
-    public String getPersonalServices(HttpSession session, Model model) {
+    public String getPersonalServiceOrders(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
         var orders = orderService.getPersonalServiceOrderList(user.getId());
         model.addAttribute("personalServiceOrders", orders);
@@ -47,7 +48,7 @@ public class OrderController {
     }
 
     @PostMapping("/create/order")
-    public ResponseEntity<Void> createService(HttpSession session, @RequestBody Map<String, String> request) {
+    public ResponseEntity<Void> createOrder(HttpSession session, @RequestBody Map<String, String> request) {
         User user = (User) session.getAttribute("loggedInUser");
         var orderData = new Order();
         orderData.setBuyerId(user.getId());

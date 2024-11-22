@@ -44,12 +44,34 @@ public class ServiceService {
 
     }
 
-    public com.MITM142.data.Service getServiceById(Integer serviceId){
-        return serviceRepository.findServiceById(serviceId);
-    }
-
     public List<String> getTypes() {
-        return List.of("test", "test1");
+        return List.of(
+                "Excavation",
+                "Concrete pouring",
+                "Bricklaying",
+                "Masonry",
+                "Steel reinforcement",
+                "Roofing",
+                "Plumbing",
+                "Electrical installation",
+                "Carpentry",
+                "Painting",
+                "Tiling",
+                "Drywall installation",
+                "Insulation",
+                "Window installation",
+                "Flooring",
+                "Landscaping",
+                "Foundation work",
+                "Wall framing",
+                "Ceiling installation",
+                "HVAC installation",
+                "Site clearing",
+                "Paving",
+                "Sewer system installation",
+                "Structural welding",
+                "Foundation waterproofing"
+        );
     }
 
     public List<com.MITM142.data.Service> getServices(Integer userId) {

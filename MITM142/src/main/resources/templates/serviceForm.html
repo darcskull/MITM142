@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            const formData = {
+                shortDescription: document.getElementById("shortDescription").value,
+                longDescription: document.getElementById("longDescription").value,
+                type: document.getElementById("typeValue").value,
+                price: parseFloat(document.getElementById("price").value),
+                timeInHours: parseInt(document.getElementById("timeInHours").value)
+            };
+            console.log(formData);
+
+            fetch("/create/service", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log("Registration successful");
+                        window.location.href = "/personal/services";
+                    } else if (response.status === 400) {
+                        message.textContent = "Empty values are not allowed";
+                    } else {
+                        console.error("Service creation failed");
+                        message.textContent = "One or more fields are with invalid value";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    message.textContent = "An error has occurred";
+                });
+        }
+    </script>
+</head>
+<body>
+<img src="/img/team_logo.png" alt="Logo" class="logo">
+<div class="button-container">
+    <form action="/" method="get">
+        <button type="submit">Logout</button>
+    </form>
+    <form action="/services" method="get" class="form-container">
+        <button type="submit">Services</button>
+    </form>
+    <form action="/personal/services" method="get" class="form-container">
+        <button type="submit">Personal Services</button>
+    </form>
+</div>
+<h2>Create Service</h2>
+<form>
+    <div>Short Description:</div>
+    <label for="shortDescription"></label>
+    <input type="text" id="shortDescription" name="shortDescription" required><br>
+
+    <div>Long Description:</div>
+    <label for="longDescription"></label>
+    <textarea id="longDescription" name="longDescription" rows="4" cols="50" required></textarea><br>
+
+    <div>Type:</div>
+    <label for="typeValue"></label>
+    <select id="typeValue" name="typeValue" required>
+        <option th:each="typeValue : ${types}" th:value="${typeValue}" th:text="${typeValue}"></option>
+    </select><br>
+
+    <div>Price:</div>
+    <label for="price"></label>
+    <input type="number" id="price" name="price" step="0.01" required><br>
+
+    <div>Time (in hours):</div>
+    <label for="timeInHours"></label>
+    <input type="number" id="timeInHours" name="timeInHours" required><br>
+
+    <button type="button" onclick="submitForm(event)">Submit</button>
+</form>
+<div id="message" style="color: red;"></div>
+</body>
+</html>

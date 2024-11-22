@@ -7,19 +7,19 @@
         <insert tableName="Order">
             <column name="id" valueComputed="nextval('order_sequence')"/>
             <column name="serviceId" value="1"/>
-            <column name="buyerId" value="1"/>
+            <column name="buyerId" value="3"/>
             <column name="address" value="123 Main St, City"/>
         </insert>
         <insert tableName="Order">
             <column name="id" valueComputed="nextval('order_sequence')"/>
             <column name="serviceId" value="2"/>
-            <column name="buyerId" value="2"/>
+            <column name="buyerId" value="1"/>
             <column name="address" value="456 Oak Ave, City"/>
         </insert>
         <insert tableName="Order">
             <column name="id" valueComputed="nextval('order_sequence')"/>
             <column name="serviceId" value="3"/>
-            <column name="buyerId" value="3"/>
+            <column name="buyerId" value="2"/>
             <column name="address" value="789 Pine Blvd, City"/>
         </insert>
     </changeSet>

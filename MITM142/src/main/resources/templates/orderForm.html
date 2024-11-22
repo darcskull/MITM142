@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            const formData = {
+                serviceId: document.getElementById("listOfServices").value,
+                address: document.getElementById("address").value
+            };
+            console.log(formData);
+
+            fetch("/create/order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log("Registration successful");
+                        window.location.href = "/orders";
+                    } else if (response.status === 400) {
+                        message.textContent = "Empty values are not allowed";
+                    } else {
+                        console.error("Order creation failed");
+                        message.textContent = "One or more fields are with invalid value";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    message.textContent = "An error has occurred";
+                });
+        }
+    </script>
+</head>
+<body>
+<img src="/img/team_logo.png" alt="Logo" class="logo">
+<div class="button-container">
+    <form action="/" method="get">
+        <button type="submit">Logout</button>
+    </form>
+    <form action="/orders" method="get" class="form-container">
+        <button type="submit">Personal Orders</button>
+    </form>
+    <form action="/orders/service" method="get" class="form-container">
+        <button type="submit">Service Orders</button>
+    </form>
+</div>
+<h2>Create Order</h2>
+<form>
+    <div>Service:</div>
+    <label for="listOfServices"></label>
+    <select id="listOfServices" name="listOfServices" required>
+        <option th:each="service : ${listOfServices}" th:value="${service.serviceId}"
+                th:text="${service.shortDescription} + ' - ' + ${service.type} + ' - ' + ${service.email} + ' - ' + ${service.phoneNumber}"></option>
+    </select><br>
+
+    <div>Address:</div>
+    <label for="address"></label>
+    <input type="text" id="address" name="address" required><br>
+
+    <button type="button" onclick="submitForm(event)">Submit</button>
+</form>
+<div id="message" style="color: red;"></div>
+</body>
+</html>

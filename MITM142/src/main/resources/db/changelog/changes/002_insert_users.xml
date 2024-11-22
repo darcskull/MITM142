@@ -8,7 +8,7 @@
             <column name="firstName" value="John"/>
             <column name="lastName" value="Doe"/>
             <column name="password" value="1234"/>
-            <column name="email" value="patient@example.com"/>
+            <column name="email" value="john@example.com"/>
             <column name="phoneNumber" value="0888161650"/>
         </insert>
         <insert tableName="User">
@@ -16,7 +16,7 @@
             <column name="firstName" value="Jane"/>
             <column name="lastName" value="Doe"/>
             <column name="password" value="1234"/>
-            <column name="email" value="doctor@example.com"/>
+            <column name="email" value="jane@example.com"/>
             <column name="phoneNumber" value="0888161651"/>
         </insert>
         <insert tableName="User">

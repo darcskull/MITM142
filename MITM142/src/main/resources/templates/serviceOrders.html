@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<img src="/img/team_logo.png" alt="Logo" class="logo">
+<div class="button-container">
+    <form action="/" method="get">
+        <button type="submit">Logout</button>
+    </form>
+    <form action="/services" method="get" class="form-container">
+        <button type="submit">Services</button>
+    </form>
+    <form action="/orders" method="get" class="form-container">
+        <button type="submit">Personal Orders</button>
+    </form>
+    <form action="/orders/form" method="get" class="form-container">
+        <button type="submit">Create Order</button>
+    </form>
+</div>
+<h2>Personal Orders</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Service</th>
+        <th>Type</th>
+        <th>Price $</th>
+        <th>Address</th>
+        <th>Time</th>
+        <th>Client</th>
+        <th>Email</th>
+        <th>PhoneNumber</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${personalServiceOrders}">
+        <td th:text="${order.shortDescription}"></td>
+        <td th:text="${order.type}"></td>
+        <td th:text="${order.price}"></td>
+        <td th:text="${order.address}"></td>
+        <td th:text="${order.timeInHours}"></td>
+        <td th:text="${order.firstName} + ' ' + ${order.lastName}"></td>
+        <td th:text="${order.email}"></td>
+        <td th:text="${order.phoneNumber}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

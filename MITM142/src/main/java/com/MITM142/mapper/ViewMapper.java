@@ -56,6 +56,7 @@ public class ViewMapper {
             view.setFirstName(user.getFirstName());
             view.setLastName(user.getLastName());
             view.setBuyerId(user.getId());
+            view.setAddress(order.getAddress());
 
             return view;
         }).toList();

@@ -33,7 +33,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="price" type="DECIMAL(10,2)"/>
-            <column name="timeInHours" type="INT"/>
+            <column name="timeInHours" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
 

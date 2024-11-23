@@ -72,14 +72,15 @@ public class ServiceRepository {
     }
 
     private Service mapRowToService(Map<String, Object> row) {
-        Service service = new Service();
-        service.setId((Integer) row.get("id"));
-        service.setShortDescription((String) row.get("shortDescription"));
-        service.setLongDescription((String) row.get("longDescription"));
-        service.setType((String) row.get("type"));
-        service.setUserId((Integer) row.get("userId"));
-        service.setPrice((BigDecimal) row.get("price"));
-        service.setTimeInHours((Integer) row.get("timeInHours"));
-        return service;
+
+        return Service.builder()
+                .id((Integer) row.get("id"))
+                .shortDescription((String) row.get("shortDescription"))
+                .longDescription((String) row.get("longDescription"))
+                .type((String) row.get("type"))
+                .userId((Integer) row.get("userId"))
+                .price((BigDecimal) row.get("price"))
+                .timeInHours((String) row.get("timeInHours"))
+                .build();
     }
 }

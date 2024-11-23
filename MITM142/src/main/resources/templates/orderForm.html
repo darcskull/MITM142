@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -53,16 +53,18 @@
 </div>
 <h2>Create Order</h2>
 <form>
-    <div>Service:</div>
-    <label for="listOfServices"></label>
-    <select id="listOfServices" name="listOfServices" required>
-        <option th:each="service : ${listOfServices}" th:value="${service.serviceId}"
-                th:text="${service.shortDescription} + ' - ' + ${service.type} + ' - ' + ${service.email} + ' - ' + ${service.phoneNumber}"></option>
-    </select><br>
+    <div class="form-group">
+        <label for="listOfServices">Services:</label>
+        <select id="listOfServices" name="listOfServices" required>
+            <option th:each="service : ${listOfServices}" th:value="${service.serviceId}"
+                    th:text="${service.shortDescription} + ' - ' + ${service.type} + ' - ' + ${service.email} + ' - ' + ${service.phoneNumber}"></option>
+        </select><br>
+    </div>
 
-    <div>Address:</div>
-    <label for="address"></label>
-    <input type="text" id="address" name="address" required><br>
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" placeholder="address" required><br>
+    </div>
 
     <button type="button" onclick="submitForm(event)">Submit</button>
 </form>

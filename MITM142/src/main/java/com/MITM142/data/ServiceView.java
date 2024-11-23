@@ -12,7 +12,7 @@ public class ServiceView {
     private String type;
     private Integer userId;
     private BigDecimal price;
-    private Integer timeInHours;
+    private String timeInHours;
     private String firstName;
     private String lastName;
     private String email;

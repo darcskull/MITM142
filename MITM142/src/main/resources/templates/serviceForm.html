@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -12,7 +12,7 @@
                 longDescription: document.getElementById("longDescription").value,
                 type: document.getElementById("typeValue").value,
                 price: parseFloat(document.getElementById("price").value),
-                timeInHours: parseInt(document.getElementById("timeInHours").value)
+                timeInHours: document.getElementById("timeInHours").value
             };
             console.log(formData);
 
@@ -56,27 +56,33 @@
 </div>
 <h2>Create Service</h2>
 <form>
-    <div>Short Description:</div>
-    <label for="shortDescription"></label>
-    <input type="text" id="shortDescription" name="shortDescription" required><br>
 
-    <div>Long Description:</div>
-    <label for="longDescription"></label>
-    <textarea id="longDescription" name="longDescription" rows="4" cols="50" required></textarea><br>
+    <div class="form-group">
+        <label for="shortDescription">Short Description:</label>
+        <input type="text" id="shortDescription" name="shortDescription" placeholder="Short Description" required><br>
+    </div>
 
-    <div>Type:</div>
-    <label for="typeValue"></label>
-    <select id="typeValue" name="typeValue" required>
-        <option th:each="typeValue : ${types}" th:value="${typeValue}" th:text="${typeValue}"></option>
-    </select><br>
+    <div class="form-group">
+        <label for="longDescription">Long Description:</label>
+        <textarea id="longDescription" name="longDescription" rows="4" cols="35" placeholder="Long Description" required></textarea><br>
+    </div>
 
-    <div>Price:</div>
-    <label for="price"></label>
-    <input type="number" id="price" name="price" step="0.01" required><br>
+    <div class="form-group">
+        <label for="typeValue">Type:</label>
+        <select id="typeValue" name="typeValue" required>
+            <option th:each="typeValue : ${types}" th:value="${typeValue}" th:text="${typeValue}"></option>
+        </select><br>
+    </div>
 
-    <div>Time (in hours):</div>
-    <label for="timeInHours"></label>
-    <input type="number" id="timeInHours" name="timeInHours" required><br>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.50" placeholder="Price" required><br>
+    </div>
+
+    <div class="form-group">
+        <label for="timeInHours">Time:</label>
+        <input type="time" id="timeInHours" name="timeInHours" required><br>
+    </div>
 
     <button type="button" onclick="submitForm(event)">Submit</button>
 </form>

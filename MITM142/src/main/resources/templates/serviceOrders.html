@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -21,32 +21,33 @@
         <button type="submit">Create Order</button>
     </form>
 </div>
-<h2>Personal Orders</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Service</th>
-        <th>Type</th>
-        <th>Price $</th>
-        <th>Address</th>
-        <th>Time</th>
-        <th>Client</th>
-        <th>Email</th>
-        <th>PhoneNumber</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="order : ${personalServiceOrders}">
-        <td th:text="${order.shortDescription}"></td>
-        <td th:text="${order.type}"></td>
-        <td th:text="${order.price}"></td>
-        <td th:text="${order.address}"></td>
-        <td th:text="${order.timeInHours}"></td>
-        <td th:text="${order.firstName} + ' ' + ${order.lastName}"></td>
-        <td th:text="${order.email}"></td>
-        <td th:text="${order.phoneNumber}"></td>
-    </tr>
-    </tbody>
-</table>
+<h2>Service Orders</h2>
+
+<div class="services-container">
+    <div th:each="order : ${personalServiceOrders}" class="service-card">
+        <div class="service-title" th:text="${order.shortDescription}"></div>
+        <div class="service-info">
+            <span>Type:</span> <span th:text="${order.type}"></span>
+        </div>
+        <div class="service-info">
+            <span>Price:</span> $<span th:text="${order.price}"></span>
+        </div>
+        <div class="service-info">
+            <span>Address:</span> <span th:text="${order.address}"></span>
+        </div>
+        <div class="service-info">
+            <span>Time:</span> <span th:text="${order.timeInHours}"></span>
+        </div>
+        <div class="service-info">
+            <span>Client:</span> <span th:text="${order.firstName} + ' ' + ${order.lastName}"></span>
+        </div>
+        <div class="service-info">
+            <span>Email:</span> <span th:text="${order.email}"></span>
+        </div>
+        <div class="service-info">
+            <span>Phone:</span> <span th:text="${order.phoneNumber}"></span>
+        </div>
+    </div>
+</div>
 </body>
 </html>

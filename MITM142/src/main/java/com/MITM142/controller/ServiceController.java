@@ -46,13 +46,15 @@ public class ServiceController {
     @PostMapping("/create/service")
     public ResponseEntity<Void> createService(HttpSession session, @RequestBody Map<String, String> request) {
         User user = (User) session.getAttribute("loggedInUser");
-        var serviceData = new Service();
-        serviceData.setUserId(user.getId());
-        serviceData.setPrice(new BigDecimal(request.get("price")));
-        serviceData.setType(request.get("type"));
-        serviceData.setLongDescription(request.get("longDescription"));
-        serviceData.setShortDescription(request.get("shortDescription"));
-        serviceData.setTimeInHours(Integer.valueOf(request.get("timeInHours")));
+        Service serviceData = Service.builder()
+                .userId(user.getId())
+                .price(new BigDecimal(request.get("price")))
+                .type(request.get("type"))
+                .longDescription(request.get("longDescription"))
+                .shortDescription(request.get("shortDescription"))
+                .timeInHours(request.get("timeInHours"))
+                .build();
+
         service.saveService(serviceData);
         return ResponseEntity.ok().build();
     }

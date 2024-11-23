@@ -11,7 +11,7 @@
             <column name="type" value="Development"/>
             <column name="userId" value="1"/>
             <column name="price" value="500.00"/>
-            <column name="timeInHours" value="50"/>
+            <column name="timeInHours" value="4:30"/>
         </insert>
         <insert tableName="Service">
             <column name="id" valueComputed="nextval('service_sequence')"/>
@@ -20,7 +20,7 @@
             <column name="type" value="Design"/>
             <column name="userId" value="2"/>
             <column name="price" value="300.00"/>
-            <column name="timeInHours" value="30"/>
+            <column name="timeInHours" value="3:00"/>
         </insert>
         <insert tableName="Service">
             <column name="id" valueComputed="nextval('service_sequence')"/>
@@ -29,7 +29,7 @@
             <column name="type" value="Marketing"/>
             <column name="userId" value="3"/>
             <column name="price" value="700.00"/>
-            <column name="timeInHours" value="70"/>
+            <column name="timeInHours" value="1:30"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

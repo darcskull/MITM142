@@ -179,3 +179,64 @@ table td {
 .button-container form {
     margin: 0;
 }
+
+.form-group {
+    display: flex;
+    align-items: center; /* Align label and input vertically */
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    width: 150px; /* Set a fixed width for labels */
+    text-align: right;
+    margin-right: 10px; /* Space between label and input */
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    flex: 1; /* Make input elements take up remaining space */
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background-color: #ff6b6b;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+.service-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.service-info {
+    margin: 5px 0;
+    color: white;
+}
+
+.service-info span {
+    font-weight: bold;
+}

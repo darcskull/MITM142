@@ -24,12 +24,14 @@ public class UserRepository {
         List<User> users = new ArrayList<>();
 
         for (Map<String, Object> row : rows) {
-            User user = new User();
-            user.setId((Integer) row.get("id"));
-            user.setFirstName((String) row.get("firstName"));
-            user.setLastName((String) row.get("lastName"));
-            user.setPhoneNumber((String) row.get("phoneNumber"));
-            user.setEmail((String) row.get("email"));
+            User user = User.builder()
+                    .id((Integer) row.get("id"))
+                    .firstName((String) row.get("firstName"))
+                    .lastName((String) row.get("lastName"))
+                    .phoneNumber((String) row.get("phoneNumber"))
+                    .email((String) row.get("email"))
+                    .build();
+
             users.add(user);
         }
 
@@ -80,14 +82,14 @@ public class UserRepository {
         }
 
         Map<String, Object> row = rows.get(0);
-        User user = new User();
-        user.setId((Integer) row.get("id"));
-        user.setFirstName((String) row.get("firstName"));
-        user.setLastName((String) row.get("lastName"));
-        user.setEmail((String) row.get("email"));
-        user.setPhoneNumber((String) row.get("phoneNumber"));
 
-        return user;
+        return User.builder()
+                .id((Integer) row.get("id"))
+                .firstName((String) row.get("firstName"))
+                .lastName((String) row.get("lastName"))
+                .email((String) row.get("email"))
+                .phoneNumber((String) row.get("phoneNumber"))
+                .build();
     }
 
 }

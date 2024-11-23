@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>User Registration</title>
@@ -52,32 +52,25 @@
 <header>
     <img src="/img/team_logo.png" alt="Logo" class="logo">
 </header>
-<form action="/" method="get" >
-    <button type="submit">Return to login page</button>
-</form>
-<h2>User Registration</h2>
+<h2>Registration</h2>
 <form>
-    <div>First Name:</div>
     <label for="firstName"></label>
-    <input type="text" id="firstName"  required><br>
+    <input type="text" id="firstName" placeholder="First Name" required><br>
 
-    <div>Last Name:</div>
     <label for="lastName"></label>
-    <input type="text" id="lastName" required><br>
+    <input type="text" id="lastName" placeholder="Last Name" required><br>
 
-    <div>Password:</div>
     <label for="password"></label>
-    <input type="password" id="password" required><br>
+    <input type="password" id="password" placeholder="Password" required><br>
 
-    <div>Email:</div>
     <label for="email"></label>
-    <input type="email" id="email" required><br>
+    <input type="email" id="email" placeholder="Email" required><br>
 
-    <div>Phone Number:</div>
     <label for="phoneNumber"></label>
-    <input type="text" id="phoneNumber" required><br>
+    <input type="text" id="phoneNumber" placeholder="Phone Number" required><br>
 
     <button type="submit" onclick="register(event)">Register</button>
+    <a href="/" class="register-link">Already have an account?</a>
 </form>
 
 <div id="message" style="color: red;"></div>

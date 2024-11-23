@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -18,26 +18,24 @@
         <button type="submit">Create Service</button>
     </form>
 </div>
-<h2>Services</h2>
-<table>
-    <thead>
-    <tr>
-        <th>Service</th>
-        <th>Description</th>
-        <th>Type</th>
-        <th>Price $</th>
-        <th>Time</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="service : ${personalServices}">
-        <td th:text="${service.shortDescription}"></td>
-        <td th:text="${service.longDescription}"></td>
-        <td th:text="${service.type}"></td>
-        <td th:text="${service.price}"></td>
-        <td th:text="${service.timeInHours}"></td>
-    </tr>
-    </tbody>
-</table>
+<h2>Personal Services</h2>
+
+<div class="services-container">
+    <div th:each="service : ${personalServices}" class="service-card">
+        <div class="service-title" th:text="${service.shortDescription}"></div>
+        <div class="service-info">
+            <span>Description:</span> <span th:text="${service.longDescription}"></span>
+        </div>
+        <div class="service-info">
+            <span>Type:</span> <span th:text="${service.type}"></span>
+        </div>
+        <div class="service-info">
+            <span>Price:</span> $<span th:text="${service.price}"></span>
+        </div>
+        <div class="service-info">
+            <span>Time:</span> <span th:text="${service.timeInHours}"></span>
+        </div>
+    </div>
+</div>
 </body>
 </html>

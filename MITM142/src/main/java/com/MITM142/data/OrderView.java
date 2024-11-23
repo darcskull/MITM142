@@ -13,7 +13,7 @@ public class OrderView {
     private String type;
     private Integer ownerId;
     private BigDecimal price;
-    private Integer timeInHours;
+    private String timeInHours;
     private Integer buyerId;
     private String firstName;
     private String lastName;

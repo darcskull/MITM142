@@ -22,7 +22,7 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/reg")
+    @GetMapping("/register")
     public String registrationPage() {
         return "registration";
     }
@@ -38,12 +38,14 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<User> registration(@RequestBody Map<String, String> registrationRequest) {
-        User user = new User();
-        user.setEmail(registrationRequest.get("email"));
-        user.setPassword(registrationRequest.get("password"));
-        user.setFirstName(registrationRequest.get("firstName"));
-        user.setLastName(registrationRequest.get("lastName"));
-        user.setPhoneNumber(registrationRequest.get("phoneNumber"));
+        User user = User.builder()
+                .email(registrationRequest.get("email"))
+                .password(registrationRequest.get("password"))
+                .firstName(registrationRequest.get("firstName"))
+                .lastName(registrationRequest.get("lastName"))
+                .phoneNumber(registrationRequest.get("phoneNumber"))
+                .build();
+
         userService.registerUser(user);
         return ResponseEntity.ok(user);
     }

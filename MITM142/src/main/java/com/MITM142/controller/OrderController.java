@@ -24,7 +24,7 @@ public class OrderController {
     private final OrderService orderService;
     private final ServiceService service;
 
-    @GetMapping("/orders")
+    @PostMapping("/orders")
     public String getOrders(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
         var orders = orderService.getPersonalOrderList(user.getId());

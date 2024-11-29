@@ -7,6 +7,7 @@
     <script>
         function submitForm(event) {
             event.preventDefault();
+
             const formData = {
                 serviceId: document.getElementById("listOfServices").value,
                 address: document.getElementById("address").value
@@ -23,7 +24,40 @@
                 .then(response => {
                     if (response.ok) {
                         console.log("Registration successful");
-                        window.location.href = "/orders";
+
+                        const paymentForm = document.createElement('form');
+                        paymentForm.setAttribute('action', 'https://3dsgate-dev.borica.bg/cgi-bin/cgi_link');
+                        paymentForm.setAttribute('method', 'POST');
+
+                        const inputs = {
+                            "AMOUNT": "20.00",
+                            "CURRENCY": "BGN",
+                            "DESC": "Детайли плащане.",
+                            "TERMINAL": "V1800008",
+                            "MERCH_NAME": "Магазин цветя",
+                            "MERCH_URL": "http://www.ateam.bg",
+                            "MERCHANT": "1600000006",
+                            "EMAIL": "merchant@borica.bg",
+                            "TRTYPE": "1",
+                            "ORDER": generateOrderId(),
+                            "AD.CUST_BOR_ORDER_ID": "133245ORDnnn",
+                            "COUNTRY": "BG",
+                            "TIMESTAMP": generateTimestamp(),
+                            "MERCH_GMT": "+02",
+                            "NONCE": generateNonce(),
+                            "ADDENDUM": "AD,TD"
+                        };
+
+                        for (const [key, value] of Object.entries(inputs)) {
+                            const input = document.createElement('input');
+                            input.setAttribute('type', 'hidden');
+                            input.setAttribute('name', key);
+                            input.setAttribute('value', value);
+                            paymentForm.appendChild(input);
+                        }
+
+                        document.body.appendChild(paymentForm);
+                        paymentForm.submit();
                     } else if (response.status === 400) {
                         message.textContent = "Empty values are not allowed";
                     } else {
@@ -35,6 +69,23 @@
                     console.error("Error:", error);
                     message.textContent = "An error has occurred";
                 });
+
+            function generateTimestamp() {
+                const dt = new Date();
+                const utc = dt.toISOString();
+                return utc.substr(0,4) + utc.substr(5,2) + utc.substr(8,2) + utc.substr(11,2) + utc.substr(14,2) + utc.substr(17,2);
+            }
+
+            function generateOrderId() {
+                const dt = new Date();
+                const utc = dt.toISOString();
+                return utc.substr(11,2) + utc.substr(14,2) + utc.substr(17,2);
+            }
+
+            function generateNonce() {
+                const timestamp = generateTimestamp();
+                return '0123456789ABCDEF01' + timestamp;
+            }
         }
     </script>
 </head>
@@ -44,7 +95,7 @@
     <form action="/" method="get">
         <button type="submit">Logout</button>
     </form>
-    <form action="/orders" method="get" class="form-container">
+    <form action="/orders" method="post" class="form-container">
         <button type="submit">Personal Orders</button>
     </form>
     <form action="/orders/service" method="get" class="form-container">

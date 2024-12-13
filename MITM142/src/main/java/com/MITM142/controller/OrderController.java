@@ -32,6 +32,14 @@ public class OrderController {
         return "personalOrders";
     }
 
+    @GetMapping("/orders")
+    public String getOrder(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("loggedInUser");
+        var orders = orderService.getPersonalOrderList(user.getId());
+        model.addAttribute("personalOrders", orders);
+        return "personalOrders";
+    }
+
     @GetMapping("/orders/form")
     public String getOrderForm(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
